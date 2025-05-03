@@ -1,0 +1,60 @@
+{% extends 'base.html' %} {% block content %}
+<h2>Edit Employee</h2>
+
+<!-- Edit Employee Form -->
+<form
+  action="{{ url_for('update_employee', employee_id=employee[0]) }}"
+  method="POST"
+  style="max-width: 400px"
+>
+  <label for="employee_id">Employee ID:</label>
+  <input
+    type="number"
+    name="employee_id"
+    id="employee_id"
+    value="{{ employee[0] }}"
+    readonly
+    required
+  /><br /><br />
+
+  <label for="name">Name:</label>
+  <input
+    type="text"
+    name="name"
+    id="name"
+    value="{{ employee[1] }}"
+    required
+  /><br /><br />
+
+  <label for="position">Position:</label>
+  <input
+    type="text"
+    name="position"
+    id="position"
+    value="{{ employee[2] }}"
+    required
+  /><br /><br />
+
+  <label for="salary">Salary:</label>
+  <input
+    type="number"
+    name="salary"
+    id="salary"
+    value="{{ employee[3] }}"
+    step="1000.00"
+    required
+  /><br /><br />
+
+  <label for="contact_no">Contact No:</label>
+  <input
+    type="text"
+    name="contact_no"
+    id="contact_no"
+    value="{{ employee[4] }}"
+    required
+  /><br /><br />
+
+  <input type="submit" value="Update Employee" />
+</form>
+
+{% endblock %}

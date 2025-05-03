@@ -1,0 +1,73 @@
+{% extends 'base.html' %} {% block content %}
+<h2>View Orders</h2>
+
+<!-- Check if there are any orders to display -->
+{% if orders %}
+<table style="width: 100%; border-collapse: collapse; margin-top: 20px">
+  <thead>
+    <tr>
+      <th style="border: 1px solid #ddd; padding: 8px; text-align: center">
+        Order ID
+      </th>
+      <th style="border: 1px solid #ddd; padding: 8px; text-align: center">
+        Product
+      </th>
+      <th style="border: 1px solid #ddd; padding: 8px; text-align: center">
+        Customer
+      </th>
+      <th style="border: 1px solid #ddd; padding: 8px; text-align: center">
+        Quantity
+      </th>
+      <th style="border: 1px solid #ddd; padding: 8px; text-align: center">
+        Sale Date
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for order in orders %}
+    <tr>
+      <td style="border: 1px solid #ddd; padding: 8px; text-align: center">
+        {{ order[0] }}
+      </td>
+      <td style="border: 1px solid #ddd; padding: 8px; text-align: center">
+        {{ order[1] }} {{ order[2] }}
+      </td>
+      <td style="border: 1px solid #ddd; padding: 8px; text-align: center">
+        {{ order[3] }}
+      </td>
+      <td style="border: 1px solid #ddd; padding: 8px; text-align: center">
+        {{ order[4] }}
+      </td>
+      <td style="border: 1px solid #ddd; padding: 8px; text-align: center">
+        {{ order[5] }}
+      </td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% else %}
+<p>No orders have been placed yet.</p>
+{% endif %} {% endblock %}
+<style>
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+  }
+
+  th,
+  td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: center;
+  }
+
+  th {
+    background-color: #f2f2f2;
+    font-weight: bold;
+  }
+
+  tr:nth-child(even) {
+    background-color: #f9f9f9;
+  }
+</style>

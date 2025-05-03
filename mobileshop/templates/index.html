@@ -1,0 +1,124 @@
+{% extends 'base.html' %} {% block content %}
+<div class="hero-section">
+  <h1>📱 Welcome to the Mobile Shop Management</h1>
+  <p>Manage products, sales, customers, and more in one place.</p>
+</div>
+
+<div class="dashboard-container">
+  <h2>Quick Access</h2>
+
+  <div class="dashboard-grid">
+    <div class="dashboard-card">
+      <a href="{{ url_for('products') }}" class="dashboard-link">
+        <span>🛒</span>
+        <h3>Manage Products</h3>
+      </a>
+    </div>
+    <div class="dashboard-card">
+      <a href="{{ url_for('customers') }}" class="dashboard-link">
+        <span>👤</span>
+        <h3>Customer Details</h3>
+      </a>
+    </div>
+    <div class="dashboard-card">
+      <a href="{{ url_for('sales') }}" class="dashboard-link">
+        <span>💰</span>
+        <h3>Sales Management</h3>
+      </a>
+    </div>
+    <div class="dashboard-card">
+      <a href="{{ url_for('suppliers') }}" class="dashboard-link">
+        <span>🚚</span>
+        <h3>Suppliers</h3>
+      </a>
+    </div>
+    <div class="dashboard-card">
+      <a href="{{ url_for('employees_list') }}" class="dashboard-link">
+        <span>👔</span>
+        <h3>Employee Records</h3>
+      </a>
+    </div>
+    <div class="dashboard-card">
+      <a href="{{ url_for('take_order') }}" class="dashboard-link">
+        <span>📝</span>
+        <h3>Take New Order</h3>
+      </a>
+    </div>
+    <div class="dashboard-card">
+      <a href="{{ url_for('view_orders') }}" class="dashboard-link">
+        <span>📦</span>
+        <h3>View Orders</h3>
+      </a>
+    </div>
+  </div>
+</div>
+
+<style>
+  .hero-section {
+    text-align: center;
+    padding: 40px 20px;
+    background-color: #f4f4f4;
+    margin-bottom: 40px;
+  }
+
+  .hero-section h1 {
+    font-size: 3rem;
+    margin-bottom: 10px;
+  }
+
+  .hero-section p {
+    font-size: 1.2rem;
+    color: #555;
+  }
+
+  .dashboard-container {
+    text-align: center;
+    padding: 20px;
+  }
+
+  .dashboard-container h2 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+    color: #333;
+  }
+
+  .dashboard-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 20px;
+    justify-items: center;
+  }
+
+  .dashboard-card {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    padding: 20px;
+    width: 250px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .dashboard-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
+  }
+
+  .dashboard-link {
+    text-decoration: none;
+    color: #333;
+    text-align: center;
+  }
+
+  .dashboard-link span {
+    font-size: 3rem;
+    margin-bottom: 10px;
+    display: block;
+  }
+
+  .dashboard-link h3 {
+    font-size: 1.2rem;
+    margin: 0;
+  }
+</style>
+{% endblock %}

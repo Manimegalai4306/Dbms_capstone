@@ -1,0 +1,86 @@
+{% extends 'base.html' %} {% block content %}
+<h2>Take Order</h2>
+
+<!-- Success Message (If message is set) -->
+{% if message %}
+<div class="success-message">{{ message }}</div>
+{% endif %}
+
+<form
+  action="{{ url_for('take_order') }}"
+  method="POST"
+  style="max-width: 600px; margin: auto"
+>
+  <!-- Product Dropdown -->
+  <label for="product_id" style="display: block; margin-bottom: 8px"
+    >Product:</label
+  >
+  <select
+    id="product_id"
+    name="product_id"
+    required
+    style="width: 100%; padding: 8px; margin-bottom: 15px"
+  >
+    <option value="" disabled selected>Select a Product</option>
+    {% for product in products %}
+    <option value="{{ product[0] }}">{{ product[1] }}</option>
+    <!-- product[0] = Product_ID, product[1] = Name -->
+    {% endfor %}
+  </select>
+
+  <!-- Customer Dropdown -->
+  <label for="customer_id" style="display: block; margin-bottom: 8px"
+    >Customer:</label
+  >
+  <select
+    id="customer_id"
+    name="customer_id"
+    required
+    style="width: 100%; padding: 8px; margin-bottom: 15px"
+  >
+    <option value="" disabled selected>Select a Customer</option>
+    {% for customer in customers %}
+    <option value="{{ customer[0] }}">{{ customer[1] }}</option>
+    <!-- customer[0] = Customer_ID, customer[1] = Name -->
+    {% endfor %}
+  </select>
+
+  <!-- Quantity Input -->
+  <label for="quantity" style="display: block; margin-bottom: 8px"
+    >Quantity:</label
+  >
+  <input
+    type="number"
+    id="quantity"
+    name="quantity"
+    required
+    style="width: 100%; padding: 8px; margin-bottom: 15px"
+  />
+
+  <!-- Sale Date Input -->
+  <label for="sale_date" style="display: block; margin-bottom: 8px"
+    >Sale Date:</label
+  >
+  <input
+    type="date"
+    id="sale_date"
+    name="sale_date"
+    required
+    style="width: 100%; padding: 8px; margin-bottom: 15px"
+  />
+
+  <!-- Submit Button -->
+  <button
+    type="submit"
+    style="
+      padding: 10px 20px;
+      background-color: #4caf50;
+      color: white;
+      border: none;
+      cursor: pointer;
+    "
+  >
+    Take Order
+  </button>
+</form>
+{% endblock %}

@@ -1,0 +1,38 @@
+{% extends 'base.html' %} {% block content %}
+<h2>Add Supplier</h2>
+
+<!-- Add Supplier Form -->
+<form
+  action="{{ url_for('suppliers') }}"
+  method="POST"
+  style="max-width: 400px"
+>
+  <label for="supplier_id">Supplier ID:</label>
+  <input
+    type="text"
+    name="supplier_id"
+    id="supplier_id"
+    value="{{ next_supplier_id }}"
+    readonly
+    required
+  /><br /><br />
+
+  <label for="name">Supplier Name:</label>
+  <input type="text" name="name" id="name" required /><br /><br />
+
+  <label for="contact_no">Contact Number:</label>
+  <input type="text" name="contact_no" id="contact_no" required /><br /><br />
+
+  <label for="email">Email:</label>
+  <input type="email" name="email" id="email" required /><br /><br />
+
+  <label for="address">Address:</label>
+  <textarea name="address" id="address" required></textarea><br /><br />
+
+  <input type="submit" value="Add Supplier" />
+</form>
+
+<!-- Go Back to Suppliers List -->
+<a href="{{ url_for('suppliers') }}">Back to Suppliers List</a>
+
+{% endblock %}

@@ -1,0 +1,54 @@
+{% extends 'base.html' %} {% block content %}
+<h2>Edit Customer</h2>
+
+<!-- Edit Customer Form -->
+<div style="margin-bottom: 30px">
+  <form
+    method="POST"
+    action="{{ url_for('update_customer', customer_id=customer[0]) }}"
+    style="max-width: 400px"
+  >
+    <label for="customer_id">Customer ID:</label>
+    <input
+      type="number"
+      name="customer_id"
+      id="customer_id"
+      value="{{ customer[0] }}"
+      readonly
+      required
+    /><br /><br />
+
+    <label for="name">Name:</label>
+    <input
+      type="text"
+      name="name"
+      id="name"
+      value="{{ customer[1] }}"
+      required
+    /><br /><br />
+
+    <label for="email">Email:</label>
+    <input
+      type="email"
+      name="email"
+      id="email"
+      value="{{ customer[2] }}"
+      required
+    /><br /><br />
+
+    <label for="contact_no">Contact No:</label>
+    <input
+      type="text"
+      name="contact_no"
+      id="contact_no"
+      value="{{ customer[3] }}"
+      required
+    /><br /><br />
+
+    <input type="submit" value="Update Customer" />
+  </form>
+</div>
+
+<!-- Back to Customers List -->
+<p><a href="{{ url_for('customers') }}">← Back to Customers</a></p>
+{% endblock %}

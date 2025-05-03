@@ -1,0 +1,76 @@
+{% extends 'base.html' %} {% block content %}
+<h2>Customers</h2>
+
+<!-- Add Customer Form -->
+<h3><a href="#" onclick="toggleCustomerForm()">+ Add Customer</a></h3>
+
+<!-- Customer Form (Initially Hidden) -->
+<div id="customer-form" style="display: none; margin-bottom: 30px">
+  <form
+    action="{{ url_for('add_customer') }}"
+    method="POST"
+    style="max-width: 400px"
+  >
+    <label for="customer_id">Customer ID:</label>
+    <input
+      type="number"
+      name="customer_id"
+      id="customer_id"
+      value="{{ next_customer_id }}"
+      readonly
+      required
+    /><br /><br />
+
+    <label for="name">Name:</label>
+    <input type="text" name="name" id="name" required /><br /><br />
+
+    <label for="email">Email:</label>
+    <input type="email" name="email" id="email" required /><br /><br />
+
+    <label for="contact_no">Contact No:</label>
+    <input type="text" name="contact_no" id="contact_no" required /><br /><br />
+
+    <input type="submit" value="Add Customer" />
+  </form>
+</div>
+
+<!-- Customer Table -->
+<table border="1" cellpadding="8" cellspacing="0">
+  <thead style="background-color: #f2f2f2">
+    <tr>
+      <th>Customer ID</th>
+      <th>Name</th>
+      <th>Contact No</th>
+      <th>Email</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for customer in customers %}
+    <tr>
+      <td>{{ customer[0] }}</td>
+      <td>{{ customer[1] }}</td>
+      <td>{{ customer[2] }}</td>
+      <td>{{ customer[3] }}</td>
+      <td>
+        <!-- Edit Button to redirect to Edit Page -->
+        <button onclick="editCustomer({{ customer[0] }})">Edit</button>
+      </td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+<!-- JavaScript to Toggle and Edit -->
+<script>
+  function toggleCustomerForm() {
+    const form = document.getElementById("customer-form");
+    form.style.display = form.style.display === "none" ? "block" : "none";
+  }
+
+  function editCustomer(customerId) {
+    // Directly build the URL string
+    window.location.href = "/edit_customer/" + customerId;
+  }
+</script>
+{% endblock %}

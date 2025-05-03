@@ -1,0 +1,98 @@
+{% extends 'base.html' %} {% block content %}
+<h2>Products</h2>
+
+<!-- Button to show the Add Product Form -->
+<button id="addProductBtn">Add New Product</button>
+
+<!-- Add Product Form (Initially hidden) -->
+<div id="addProductForm" style="display: none; margin-top: 20px">
+  <h3>Add New Product</h3>
+  <form method="POST">
+    <label for="product_id">Product ID:</label>
+    <input
+      type="number"
+      name="product_id"
+      value="{{ next_product_id }}"
+      readonly
+    /><br />
+
+    <label for="brand">Brand:</label>
+    <input type="text" name="brand" required /><br />
+
+    <label for="model">Model:</label>
+    <input type="text" name="model" required /><br />
+
+    <label for="price">Price:</label>
+    <input type="number" name="price" step="0.01" required /><br />
+
+    <label for="stock">Stock:</label>
+    <input type="number" name="stock" required /><br />
+
+    <label for="ram">RAM:</label>
+    <input type="text" name="ram" required /><br />
+
+    <label for="storage">Storage:</label>
+    <input type="text" name="storage" required /><br />
+
+    <label for="color">Color:</label>
+    <input type="text" name="color" required /><br />
+
+    <label for="processor">Processor:</label>
+    <input type="text" name="processor" required /><br /><br />
+
+    <button type="submit">Add Product</button>
+  </form>
+</div>
+
+<!-- Table of Existing Products -->
+<h3 style="margin-top: 40px">Product List</h3>
+<table border="1" cellpadding="10">
+  <thead>
+    <tr>
+      <th>Product ID</th>
+      <th>Brand</th>
+      <th>Model</th>
+      <th>Price</th>
+      <th>Stock</th>
+      <th>RAM</th>
+      <th>Storage</th>
+      <th>Color</th>
+      <th>Processor</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for product in products %}
+    <tr>
+      <td>{{ product[0] }}</td>
+      <td>{{ product[1] }}</td>
+      <td>{{ product[2] }}</td>
+      <td>{{ product[3] }}</td>
+      <td>{{ product[4] }}</td>
+      <td>{{ product[5] }}</td>
+      <td>{{ product[6] }}</td>
+      <td>{{ product[7] }}</td>
+      <td>{{ product[8] }}</td>
+      <td>
+        <form
+          method="POST"
+          action="{{ url_for('delete_product', product_id=product[0]) }}"
+          onsubmit="return confirm('Are you sure you want to delete this product?');"
+        >
+          <button type="submit" style="color: red">Delete</button>
+        </form>
+      </td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+<script>
+  document
+    .getElementById("addProductBtn")
+    .addEventListener("click", function () {
+      const form = document.getElementById("addProductForm");
+      form.style.display = form.style.display === "none" ? "block" : "none";
+    });
+</script>
+{% endblock %}
